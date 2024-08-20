@@ -43,39 +43,82 @@ void find_cmd(data_t *data)
 }
 
 /**
-*fork_cmd - entry point forks an exec thread to run cmd
-*@data: is the parameter & return data struct
-*
-*Return: void
+*is_delim - entry point checks if a character is a delimeter
+*@c: is the char to be checked
+*@delim: is the delimeter string
+*Return: 1 if true, or 0 if false
 */
-void fork_cmd(data_t *data)
+int is_delim(char c, char *delim)
 {
-	pid_t child_pid;
+	while (*delim)
+	{
+		if (*delim++ == c)
+		return (1);
+	}
+	return (0);
+}
 
-	child_pid = fork();
-	if (child_pid == -1)
+/**
+*find_path - entry point finds the given command in the PATH string
+*@data: is the data struct
+*@pathstr: is the PATH string
+*@cmd: is the cmd to find
+*
+*Return: full path of cmd if found or NULL if not found.
+*/
+char *find_path(data_t *data, char *pathstr, char *cmd)
+{
+	int i = 0, cur_pos = 0;
+	char *path;
+
+	if (!pathstr)
+		return (NULL);
+	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		perror("Error:");
-		return;
+		if (is_cmd(data, cmd))
+			return (cmd);
 	}
-	if (child_pid == 0)
+	while (1)
 	{
-		if (execve(data->path, data->argv, get_environ(data)) == -1)
+		if (!pathstr[i] || pathstr[i] == ':')
 		{
-			free_data(data, 1);
-			if (errno == EACCES)
-				exit(126);
-			exit(1);
+			path = dup_chars(pathstr, cur_pos, i);
+			if (!*path)
+				_strcat(path, cmd);
+			else
+			{
+				_strcat(path, "/");
+				_strcat(path, cmd);
+			}
+			if (is_cmd(data, path))
+				return (path);
+			if (!pathstr[i])
+				break;
+			cur_pos = i;
 		}
+		i++;
 	}
-	else
+	return (NULL);
+}
+
+/**
+*_getenv - entry point gets the value of an environ variable
+*@data: is the data struct containing potential arguments
+*@name: environ variable name
+*
+*Return: the value
+*/
+char *_getenv(data_t *data, const char *name)
+{
+	list_t *node = data->env;
+	char *p;
+
+	while (node)
 	{
-		wait(&(data->status));
-		if (WIFEXITED(data->status))
-		{
-			data->status = WEXITSTATUS(data->status);
-			if (data->status == 126)
-				print_error(data, "Permission denied\n");
-		}
+		p = starts_with(node->str, name);
+		if (p && *p)
+			return (p);
+		node = node->next;
 	}
+	return (NULL);
 }
