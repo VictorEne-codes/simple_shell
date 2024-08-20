@@ -12,7 +12,7 @@
 char *_strncat(char *d, char *s, int n)
 {
 	int i, j;
-	char *p = dest;
+	char *p = d;
 
 	i = 0;
 	j = 0;
@@ -33,6 +33,30 @@ char *_strncat(char *d, char *s, int n)
 	return (p);
 }
 
+/**
+ * read_buffer - funtion to read a buffer
+ * @data: input
+ * @buffer: input
+ * @i: input
+ *
+ * Return: ssize_t
+ */
+
+ssize_t read_buffer(data_t *data, char *buffer, size_t *i)
+{
+	ssize_t r = 0;
+
+	if (*i)
+	{
+		return (0);
+	}
+	r = read(data->readfd, buffer, READ_BUF_SIZE);
+	if (r >= 0)
+	{
+		*i = r;
+	}
+	return (r);
+}
 /**
  * _realloc - reallocates memory
  * @p: input
@@ -87,7 +111,7 @@ int _getline(data_t *data, char **p, size_t *len)
 	if (i == l)
 		i = l = 0;
 
-	r = read_buf(info, buf, &l);
+	r = read_buffer(data, buf, &l);
 	if (r == -1 || (r == 0 && l == 0))
 		return (-1);
 
