@@ -94,3 +94,23 @@ char *_strcat(char *dest, char *src)
 	*dest = *src;
 	return (ptr);
 }
+
+/**
+ * dup_chars - entry point duplicates characters
+ * @pathstr: input
+ * @start: starting index
+ * @end: ending index
+ *
+ * Return: pointer to new buffer
+ */
+char *dup_chars(char *pathstr, int start, int end)
+{
+	static char buf[1024];
+	int i = 0, k = 0;
+
+	for (k = 0, i = start; i < end; i++)
+		if (pathstr[i] != ':')
+			buf[k++] = pathstr[i];
+	buf[k] = 0;
+	return (buf);
+}
