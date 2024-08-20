@@ -81,5 +81,16 @@ char *_strchr(char *str, char ch);
 void sigintHandler(__attribute__((unused))int sig);
 char *_strncpy(char *d, char *s, int n);
 ssize_t read_buffer(data_t *data, char *buffer, size_t *i);
+void free_data(data_t *data, int all);
+void set_data(data_t *data, char **av);
+int hsh(data_t *data, char **av);
+char *_getenv(data_t *data, const char *name);
+char *find_path(data_t *data, char *pathstr, char *cmd);
+int is_delim(char c, char *delim);
+void find_cmd(data_t *data);
+int interactive(data_t *data);
+void print_error(data_t *data, char *estr);
+int is_cmd(data_t *data, char *path);
+void fork_cmd(data_t *data);
 
 #endif

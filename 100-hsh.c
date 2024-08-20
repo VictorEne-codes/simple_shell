@@ -1,12 +1,13 @@
-#include "shell.h"
+#include "main.h"
 
 /**
 *hsh - entry point is the main shell loop
-*@data: is the parameter & return data struct
-*@av: is the argument vector from main function
+*@data: inputt
+*@av: input
 *
-*Return: 0 if  success, or 1 on error, or return error code
+*Return: int
 */
+
 int hsh(data_t *data, char **av)
 {
 	ssize_t r = 0;
@@ -44,9 +45,12 @@ int hsh(data_t *data, char **av)
 }
 
 /**
-*clear_data - initializes data_t struct
-*@data: struct address
+* clear_data - initializes data_t struct
+* @data: input
+*
+* Return: void
 */
+
 void clear_data(data_t *data)
 {
 	data->arg = NULL;
@@ -56,10 +60,13 @@ void clear_data(data_t *data)
 }
 
 /**
-*set_data - initializes data_t struct
-*@data: struct address
-*@av: argument vector from main
+* set_data - initializes data_t struct
+* @data: input
+* @av: input
+*
+* Return: void
 */
+
 void set_data(data_t *data, char **av)
 {
 	int i = 0;
@@ -88,10 +95,13 @@ void set_data(data_t *data, char **av)
 }
 
 /**
-*free_data - frees data_t struct fields
-*@data: struct address
-*@all: returns true if all fields are freed
+* free_data - frees data_t struct fields
+* @data: input
+* @all: input
+*
+* Return: void
 */
+
 void free_data(data_t *data, int all)
 {
 	ffree(data->argv);

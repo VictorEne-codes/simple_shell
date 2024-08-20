@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
-*find_cmd - entry point finds a command in PATH
-*@data: is the parameter & return data struct
+* find_cmd - entry point finds a command in PATH
+* @data: input
 *
 *Return: void
 */
+
 void find_cmd(data_t *data)
 {
 	char *path = NULL;
@@ -43,11 +44,13 @@ void find_cmd(data_t *data)
 }
 
 /**
-*is_delim - entry point checks if a character is a delimeter
-*@c: is the char to be checked
-*@delim: is the delimeter string
-*Return: 1 if true, or 0 if false
+* is_delim - entry point checks if a character is a delimeter
+* @c: input
+* @delim: input
+*
+* Return: int
 */
+
 int is_delim(char c, char *delim)
 {
 	while (*delim)
@@ -59,13 +62,14 @@ int is_delim(char c, char *delim)
 }
 
 /**
-*find_path - entry point finds the given command in the PATH string
-*@data: is the data struct
-*@pathstr: is the PATH string
-*@cmd: is the cmd to find
+* find_path - entry point finds the given command in the PATH string
+* @data: input
+* @pathstr: input
+* @cmd: input
 *
-*Return: full path of cmd if found or NULL if not found.
+* Return: char
 */
+
 char *find_path(data_t *data, char *pathstr, char *cmd)
 {
 	int i = 0, cur_pos = 0;
@@ -102,12 +106,13 @@ char *find_path(data_t *data, char *pathstr, char *cmd)
 }
 
 /**
-*_getenv - entry point gets the value of an environ variable
-*@data: is the data struct containing potential arguments
-*@name: environ variable name
+* _getenv - entry point gets the value of an environ variable
+* @data: input
+* @name: input
 *
-*Return: the value
+* Return: char
 */
+
 char *_getenv(data_t *data, const char *name)
 {
 	list_t *node = data->env;

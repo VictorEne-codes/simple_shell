@@ -1,11 +1,12 @@
-#include "shell.h"
+#include "main.h"
 
 /**
-*fork_cmd - entry point forks an exec thread to run cmd
-*@data: is the parameter & return data struct
+* fork_cmd - entry point forks an exec thread to run cmd
+* @data: input
 *
-*Return: void
+* Return: void
 */
+
 void fork_cmd(data_t *data)
 {
 	pid_t child_pid;
@@ -33,25 +34,28 @@ void fork_cmd(data_t *data)
 		{
 			data->status = WEXITSTATUS(data->status);
 			if (data->status == 126)
+			{
 				print_error(data, "Permission denied\n");
+			}
 		}
 	}
 }
 
 /**
-*is_cmd - entry point determines if a file is an executable command
-*@data: is the data struct
-*@path: path to the file
+* is_cmd - entry point determines if a file is an executable command
+* @data: input
+* @path: input
 *
-*Return: 1 if true, or 0 if otherwise
+* Return: int
 */
+
 int is_cmd(data_t *data, char *path)
 {
 	struct stat st;
 
 	(void)data;
 	if (!path || stat(path, &st))
-	{		
+	{
 		return (0);
 	}
 
@@ -63,12 +67,13 @@ int is_cmd(data_t *data, char *path)
 }
 
 /**
-*print_error - entry point prints an error message
-*@data: is the parameter and return data struct
-*@estr: is the string containing specified error type
-*Return: 0 if tehre are no numbers in the string, or converted number
-*otherwise return -1 on error.
+* print_error - entry point prints an error message
+* @data: input
+* @estr: input
+*
+* Return: void
 */
+
 void print_error(data_t *data, char *estr)
 {
 	_eputs(data->fname);
@@ -81,11 +86,12 @@ void print_error(data_t *data, char *estr)
 }
 
 /**
-*interactive - entry point returns true if shell is interactive mode
-*@data: is data struct address
+* interactive - entry point returns true if shell is interactive mode
+* @data: input
 *
-*Return: 1 if in interactive mode, else return 0.
+* Return: int
 */
+
 int interactive(data_t *data)
 {
 	return (isatty(STDIN_FILENO) && data->readfd <= 2);
