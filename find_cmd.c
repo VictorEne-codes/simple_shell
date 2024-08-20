@@ -1,38 +1,6 @@
 #include "shell.h"
 
 /**
-*find_builtin_cmd - entry point looks for a builtin command
-*@data: the parameter & return data struct
-*
-*Return: -1 if builtin not found, or 0 if builtin was executed successfully
-*or 1 if builtin found but not successful, or -2 if builtin signals exit()
-*/
-int find_builtin_cmd(data_t *data)
-{
-	int i, built_in_ret = -1;
-	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myenv},
-		{"help", _myhelp},
-		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
-		{"cd", _mycd},
-		{"alias", _myalias},
-		{NULL, NULL}
-	};
-
-	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(data->argv[0], builtintbl[i].type) == 0)
-		{
-			data->line_count++;
-			built_in_ret = builtintbl[i].func(data);
-			break;
-		}
-	return (built_in_ret);
-}
-
-/**
 *find_cmd - entry point finds a command in PATH
 *@data: is the parameter & return data struct
 *
