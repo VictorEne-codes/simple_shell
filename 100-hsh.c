@@ -45,7 +45,7 @@ int hsh(data_t *data, char **av)
 }
 
 /**
-* clear_data - initializes data_t struct
+* clear_data - entry point initializes data_t struct
 * @data: input
 *
 * Return: void
@@ -60,7 +60,7 @@ void clear_data(data_t *data)
 }
 
 /**
-* set_data - initializes data_t struct
+* set_data - entry point initializes data_t struct
 * @data: input
 * @av: input
 *
@@ -95,7 +95,7 @@ void set_data(data_t *data, char **av)
 }
 
 /**
-* free_data - frees data_t struct fields
+* free_data - entry point frees data_t struct fields
 * @data: input
 * @all: input
 *
