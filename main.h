@@ -28,8 +28,7 @@ typedef struct liststrings
 	char *str;
 	struct liststr *next;
 } list_t;
-
-
+ 
 /**
  * struct getsdata - arguments to pass into funtions
  * @arg: input
@@ -74,6 +73,18 @@ typedef struct getsdata
 	int histcount;
 } data_t;
 
+/**
+ * struct builtin - contains a builtin string and related function
+ * @type: input
+ * @func: input
+ */
+
+typedef struct builtin
+{
+        char *type;
+        int (*func)(data_t *);
+} builtin_table;
+
 int _getline(data_t *data, char **p, size_t *len);
 void *_realloc(void *p, unsigned int o_size, unsigned int n_size);
 char *_strncat(char *d, char *s, int n);
@@ -92,5 +103,23 @@ int interactive(data_t *data);
 void print_error(data_t *data, char *estr);
 int is_cmd(data_t *data, char *path);
 void fork_cmd(data_t *data);
+int find_builtin(data_t *data);
+int _myexit(data_t *data);
+int _myenv(data_t *data);
+int _myhistory(data_t *data);
+int _mysetenv(data_t *data);
+int _strcmp(char *str1, char *str2);
+int _myhelp(data_t *data);
+int _myunsetenv(data_t *data);
+int _mycd(data_t *data);
+void _puts(char *str);
+char *_getenv(data_t *data, const char *n);
+int _putchar(char c);
+void print_error(data_t *data, char *estr);
+void _eputs(char *s);
+int print_d(int inp, int d);
+int _eputchar(char c);
+
+
 
 #endif

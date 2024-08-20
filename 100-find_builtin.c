@@ -26,7 +26,7 @@ int find_builtin(data_t *data)
 		if (_strcmp(data->argv[0], builtint[i].type) == 0)
 		{
 			data->line_count++;
-			built_in_ret = builtint[i].func(data);
+			built_in_return = builtint[i].func(data);
 			break;
 		}
 	return (built_in_return);
@@ -87,3 +87,41 @@ int _myhistory(data_t *data)
 	return (0);
 }
 
+/**
+ * _myalias - works like the alias command
+ * @data: input
+ *
+ * Return: int
+ */
+
+int _myalias(data_t *data)
+{
+	int i = 0;
+	char *ptr = NULL;
+	list_t *n = NULL;
+
+	if (data->argc == 1)
+	{
+		n = data->alias;
+		while (n)
+		{
+			print_alias(n);
+			n = n->next;
+		}
+		return (0);
+	}
+	for (i = 1; data->argv[i]; i++)
+	{
+		ptr = _strchr(data->argv[i], '=');
+		if (ptr)
+		{
+			set_alias(data, data->argv[i]);
+		}
+		else
+		{
+			print_alias(node_starts_with(data->alias, data->argv[i], '='));
+		}
+	}
+
+	return (0);
+}
