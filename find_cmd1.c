@@ -61,3 +61,32 @@ int is_cmd(data_t *data, char *path)
 	}
 	return (0);
 }
+
+/**
+*print_error - entry point prints an error message
+*@data: is the parameter and return data struct
+*@estr: is the string containing specified error type
+*Return: 0 if tehre are no numbers in the string, or converted number
+*otherwise return -1 on error.
+*/
+void print_error(data_t *data, char *estr)
+{
+	_eputs(data->fname);
+	_eputs(": ");
+	print_d(data->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(data->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
+}
+
+/**
+*interactive - entry point returns true if shell is interactive mode
+*@data: is data struct address
+*
+*Return: 1 if in interactive mode, else return 0.
+*/
+int interactive(data_t *data)
+{
+	return (isatty(STDIN_FILENO) && data->readfd <= 2);
+}
