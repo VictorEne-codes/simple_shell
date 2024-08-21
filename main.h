@@ -125,6 +125,10 @@ int _strlen(char *s);
 char *starts_with(const char *haystack, const char *needle);
 char *_strcat(char *dest, char *src);
 char *dup_chars(char *pathstr, int start, int end);
+int populate_env_list(data_t *data);
+int _setenv(data_t *data, char *var, char *val);
+int _unsetenv(data_t *data, char *var);
+char **get_environ(data_t *data);
 
 
 #endif

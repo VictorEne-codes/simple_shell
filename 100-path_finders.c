@@ -2,12 +2,13 @@
 
 /**
  * find_path - entry point looks for command in the PATH string
- * @data: is the data structure
- * @pathstr: is the PATH string
- * @cmd: is the command to look for
+ * @data: input
+ * @pathstr: input
+ * @cmd: input
  *
- * Return: full path of cmd if found or NULL if not.
+ * Return: char
  */
+
 char *find_path(data_t *data, char *pathstr, char *cmd)
 {
 	int i = 0, cur_pos = 0;
@@ -47,8 +48,9 @@ char *find_path(data_t *data, char *pathstr, char *cmd)
  * _strlen - entry point returns the length of a string
  * @s: input
  *
- * Return: length of string
+ * Return: int
  */
+
 int _strlen(char *s)
 {
 	int i = 0;
@@ -66,8 +68,9 @@ int _strlen(char *s)
  * @haystack: input
  * @needle: input
  *
- * Return: address of next char of haystack or NULL
+ * Return: char
  */
+
 char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
@@ -78,31 +81,33 @@ char *starts_with(const char *haystack, const char *needle)
 
 /**
  * _strcat - entry point concatenates two strings
- * @dest: destination
- * @src: source
+ * @d: destination
+ * @s: source
  *
- * Return: pointer to destination buffer
+ * Return: char
  */
-char *_strcat(char *dest, char *src)
-{
-	char *ptr = dest;
 
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
+char *_strcat(char *d, char *s)
+{
+	char *ptr = d;
+
+	while (*d)
+		d++;
+	while (*s)
+		*d++ = *s++;
+	*d = *s;
 	return (ptr);
 }
 
 /**
  * dup_chars - entry point duplicates characters
  * @pathstr: input
- * @start: starting index
- * @end: ending index
+ * @start: input
+ * @end: input
  *
- * Return: pointer to new buffer
+ * Return: char
  */
+
 char *dup_chars(char *pathstr, int start, int end)
 {
 	static char buf[1024];

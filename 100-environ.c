@@ -2,10 +2,11 @@
 
 /**
  * get_environ - entry point returns the string array copy of our environ
- * @data: is the data structure containing potential arguments.
+ * @data: input
  *
- * Return: Always 0
+ * Return: char
  */
+
 char **get_environ(data_t *data)
 {
 	if (!data->environ || data->env_changed)
@@ -19,11 +20,12 @@ char **get_environ(data_t *data)
 
 /**
  * _unsetenv - entry point removes an environment variable
- * @data: Structure containing potential arguments.
- * 
- *  Return: 1 on delete, or 0 otherwise
+ * @data: input
  * @var: input
+ *
+ * Return: int
  */
+
 int _unsetenv(data_t *data, char *var)
 {
 	list_t *node = data->env;
@@ -50,14 +52,14 @@ int _unsetenv(data_t *data, char *var)
 }
 
 /**
- * _setenv - entry point initializes a new environment variable,
- * or modifies the existing one.
- * @data: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _setenv - entry point initializes a new environment
+ * @data: input
  * @var: input
  * @val: input
- * Return: Always 0 if successful.
+ *
+ * Return: int
  */
+
 int _setenv(data_t *data, char *var, char *val)
 {
 	char *buf = NULL;
@@ -94,10 +96,11 @@ int _setenv(data_t *data, char *var, char *val)
 
 /**
  * populate_env_list - entry point populates environment linked list
- * @data: is the data struct containing potential arguments.
+ * @data: input
  * 
- * Return: Always 0
+ * Return: int
  */
+
 int populate_env_list(data_t *data)
 {
 	list_t *node = NULL;

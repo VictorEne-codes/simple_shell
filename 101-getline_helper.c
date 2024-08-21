@@ -65,3 +65,82 @@ void sigintHandler(__attribute__((unused))int sig)
 	_puts("$ ");
 	_putchar(BUF_FLUSH);
 }
+
+/**
+ * input_buf - function to buffer chained command
+ * @data: input
+ * @buffer: input
+ * @length: input
+ *
+ * Return: ssize_t
+ */
+
+ssize_t input_buf(data_t *data, char **buffer, size_t *length)
+{
+	ssize_t r = 0;
+	size_t len_p = 0;
+
+	if (!*length)
+	{
+		free(*buffer);
+		*buffer = NULL;
+		signal(SIGINT, sigintHandler);
+#if USE_GETLINE
+		r = getline(buffer, &len_p, stdin);
+#else
+		r = _getline(data, buffer, &len_p);
+#endif
+		if (r > 0)
+		{
+			if ((*buffer)[r - 1] == '\n')
+			{
+				(*buffer)[r - 1] = '\0';
+				r--;
+			}
+			data->linecount_flag = 1;
+			remove_comments(*buffer);
+			build_history_list(data, *buffer, data->histcount++);
+			{
+				*legthn = r;
+				data->cmd_buf = buffer;
+			}
+		}
+	}
+	return (r);
+}
+
+/**
+ * check_chain - checks the buffer chain
+ * @data: input
+ * @buffer: input
+ * @ptr: input
+ * @i: input
+ * @length: input
+ *
+ * Return: void
+ */
+
+void check_chain(data_t *data, char *buffer, size_t *ptr, size_t i, size_t length)
+{
+	size_t j = *ptr;
+
+	if (data->cmd_buf_type == CMD_AND)
+	{
+		if (data->status)
+		{
+			buffer[i] = 0;
+			j = length;
+		}
+	}
+	if (data->cmd_buf_type == CMD_OR)
+	{
+		if (!data->status)
+		{
+			buffer[i] = 0;
+			j = length;
+		}
+	}
+
+	*ptr = j;
+}
+
