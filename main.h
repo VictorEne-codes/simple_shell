@@ -119,7 +119,12 @@ void print_error(data_t *data, char *estr);
 void _eputs(char *s);
 int print_d(int inp, int d);
 int _eputchar(char c);
-
+int _myalias(data_t *data);
+char *find_path(data_t *data, char *pathstr, char *cmd);
+int _strlen(char *s);
+char *starts_with(const char *haystack, const char *needle);
+char *_strcat(char *dest, char *src);
+char *dup_chars(char *pathstr, int start, int end);
 
 
 #endif
