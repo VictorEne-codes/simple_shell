@@ -129,6 +129,13 @@ int populate_env_list(data_t *data);
 int _setenv(data_t *data, char *var, char *val);
 int _unsetenv(data_t *data, char *var);
 char **get_environ(data_t *data);
+ssize_t get_input(data_t *data);
+int is_chain(data_t *data, char *buffer, size_t *ptr);
+char **strtow2(char *str, char p);
+char **strtow(char *str, char *p);
+void check_chain(data_t *data, char *buffer, size_t *ptr, size_t i, size_t length);
+ssize_t input_buf(data_t *data, char **buffer, size_t *length);
+
 
 
 #endif
