@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
-*_atoi - entry point converts a string into an integer
-*@s: is the inputted string to be converted
-*Return: 0 if no numbers in string, or converted number otherwise
+* _atoi - entry point converts a string into an integer
+* @s: input
+*
+* Return: int
 */
 
 int _atoi(char *s)
@@ -36,9 +37,11 @@ int _atoi(char *s)
 
 /**
 * _erratoi - entry point converts a string to an integer
-* @s: is the inputted string to be converted
-* Return: 0 if no numbers in string, or converted number. otherwise return -1 on error
+* @s: input
+*
+* Return: int
 */
+
 int _erratoi(char *s)
 {
 	int i = 0;
@@ -65,36 +68,35 @@ int _erratoi(char *s)
 
 /**
 *convert_number - entry point is a converter function, a replica of itoa
-*@num: inputted number
-*@base: base of the input number
-*@flags: argument flags
+* @num: input
+* @b: input
+* @f: input
 *
-*Return: pointer to the string
+* Return: char
 */
-char *convert_number(long int num, int base, int flags)
+
+char *convert_number(long int num, int b, int f)
 {
-	static char *array;
-	static char buffer[50];
+	static char *arr;
+	static char buf[50];
 	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(f & CONVERT_UNSIGNED) && num < 0)
 	{
 		n = -num;
 		sign = '-';
 
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buffer[49];
+	arr = f & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buf[49];
 	*ptr = '\0';
 
-	do
-	{
-		*--ptr = array[n % base];
-		n /= base;
-	}
-	while (n != 0);
+	do {
+		*--ptr = array[n % b];
+		n /= b;
+	} while (n != 0);
 
 	if (sign)
 	{
@@ -104,19 +106,21 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
-*remove_comments - entry point function replaces first instance of '#' with '\0'
-*@buf: is the address of the string to modify
+* remove_comments - entry point function desihned to
+* first instance of '#' with '\0'
+* @buffer: input
 *
-*Return: void.
+* Return: void.
 */
-void remove_comments(char *buf)
+
+void remove_comments(char *buffer)
 {
 	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (i = 0; buffer[i] != '\0'; i++)
+		if (buffer[i] == '#' && (!i || buffer[i - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buffer[i] = '\0';
 			break;
 		}
 }

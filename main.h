@@ -135,7 +135,24 @@ char **strtow2(char *str, char p);
 char **strtow(char *str, char *p);
 void check_chain(data_t *data, char *buffer, size_t *ptr, size_t i, size_t length);
 ssize_t input_buf(data_t *data, char **buffer, size_t *length);
-
+char *_memset(char *s, char b, unsigned int n);
+list_t *add_node(list_t **head, const char *s, int n);
+size_t get_node_index(list_t *head, list_t *n);
+int delete_node_at_index(list_t **head, unsigned int ind);
+char *_strdup(const char *s);
+int _putfd(char c, int fd);
+list_t *node_starts_with(list_t *node, char *p, char c);
+int _putsfd(char *s, int fd);
+list_t *add_node_end(list_t **head, const char *s, int n);
+void ffree(char **ptr);
+void remove_comments(char *buf);
+char *convert_number(long int num, int base, int flags);
+int _erratoi(char *s);
+int _atoi(char *s);
+char *_strcpy(char *dest, char *src);
+int build_history_list(data_t *data, char *buf, int linecount);
+int write_history(data_t *data);
+char *get_history_file(data_t *data);
 
 
 #endif

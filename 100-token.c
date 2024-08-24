@@ -3,7 +3,7 @@
 /**
  * strtow - splits strings into words
  * @str: input
- * p: input
+ * @p: input
  *
  * Return: char
  */

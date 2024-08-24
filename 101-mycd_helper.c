@@ -3,7 +3,7 @@
 /**
  * print_error - outputs an error message
  * @data: input
- * estr: input
+ * @estr: input
  *
  * Return: void
  */

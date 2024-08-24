@@ -97,7 +97,7 @@ int _setenv(data_t *data, char *var, char *val)
 /**
  * populate_env_list - entry point populates environment linked list
  * @data: input
- * 
+ *
  * Return: int
  */
 

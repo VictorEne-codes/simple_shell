@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-*get_history_file - entry point gets the history file
-*@data: data struct
+* get_history_file - entry point gets the history file
+* @data: input
 *
-*Return: allocated string containg history file
+* Return: char
 */
 
 char *get_history_file(data_t *data)
@@ -25,11 +25,12 @@ char *get_history_file(data_t *data)
 }
 
 /**
-*write_history - entry point creates a file, or appends to an existing file
-*@data: data structure
+* write_history - entry point creates a file, or appends to an existing file
+* @data: input
 *
-*Return: 1 on success, else return -1
+* Return: int
 */
+
 int write_history(data_t *data)
 {
 	ssize_t fd;
@@ -55,13 +56,14 @@ int write_history(data_t *data)
 
 
 /**
-*build_history_list - entry point adds entry to a history linked list
-*@data: data structure containing potential arguments.
-*@buf: buffer
-*@linecount: is the history count
+* build_history_list - entry point adds entry to a history linked list
+* @data: input
+* @buf: buffer
+* @linecount: is the history count
 *
-*Return: Always 0
+* Return: Always 0
 */
+
 int build_history_list(data_t *data, char *buf, int linecount)
 {
 	list_t *node = NULL;
@@ -80,11 +82,13 @@ int build_history_list(data_t *data, char *buf, int linecount)
 }
 
 /**
-*_strcpy - entry point copies a string from a source to a destination
-*@dest: is the string destination
-*@src: is the string source
-*Return: pointer to destination
+* _strcpy - entry point copies a string from a source to a destination
+* @dest: input
+* @src: input
+*
+* Return: char
 */
+
 char *_strcpy(char *dest, char *src)
 {
 	int i = 0;

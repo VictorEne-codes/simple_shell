@@ -120,7 +120,8 @@ ssize_t input_buf(data_t *data, char **buffer, size_t *length)
  * Return: void
  */
 
-void check_chain(data_t *data, char *buffer, size_t *ptr, size_t i, size_t length)
+void check_chain(data_t *data, char
+		*buffer, size_t *ptr, size_t i, size_t length)
 {
 	size_t j = *ptr;
 
