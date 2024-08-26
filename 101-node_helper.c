@@ -39,11 +39,11 @@ list_t *add_node_end(list_t **head, const char *s, int n)
 	if (!new_node)
 		return (NULL);
 	_memset((void *)new_node, 0, sizeof(list_t));
-	new_node->n = n;
+	new_node->num = n;
 	if (s)
 	{
-		new_node->s = _strdup(s);
-		if (!new_node->s)
+		new_node->str = _strdup(s);
+		if (!new_node->str)
 		{
 			free(new_node);
 			return (NULL);
@@ -121,7 +121,7 @@ int _putfd(char c, int fd)
 
 	if (c == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, n);
+		write(fd, buffer, n);
 		n = 0;
 	}
 	if (c != BUF_FLUSH)

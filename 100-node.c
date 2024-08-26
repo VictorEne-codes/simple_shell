@@ -19,11 +19,11 @@ list_t *add_node(list_t **head, const char *s, int n)
 	if (!new_h)
 		return (NULL);
 	_memset((void *)new_h, 0, sizeof(list_t));
-	new_h->n = n;
+	new_h->num = n;
 	if (s)
 	{
-		new_h->s = _strdup(s);
-		if (!new_h->s)
+		new_h->str= _strdup(s);
+		if (!new_h->str)
 		{
 			free(new_h);
 			return (NULL);

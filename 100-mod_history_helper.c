@@ -45,7 +45,7 @@ int read_history(data_t *data)
 		fsize = st.st_size;
 	if (fsize < 2)
 		return (0);
-	buf = malloc(sizeof(char) * (fsize + 1));
+	buffer = malloc(sizeof(char) * (fsize + 1));
 	if (!buffer)
 		return (0);
 	rdlen = read(fd, buffer, fsize);
@@ -68,4 +68,74 @@ int read_history(data_t *data)
 		delete_node_at_index(&(data->history), 0);
 	renumber_history(data);
 	return (data->histcount);
+}
+
+/**
+ * print_alias - prints an alias
+ * @n: node
+ *
+ * Return: int
+ */
+
+int print_alias(list_t *n)
+{
+	char *p = NULL, *a = NULL;
+
+	if (n)
+	{
+		p = _strchr(n->str, '=');
+		for (a = n->str; a <= p; a++)
+			_putchar(*a);
+		_putchar('\'');
+		_puts(p + 1);
+		_puts("'\n");
+		return (0);
+	}
+	return (1);
+}
+
+/**
+ * set_alias - function to set alias
+ * @data: inpit
+ * @s: input
+ *
+ * Return: int
+ */
+
+int set_alias(data_t *data, char *s)
+{
+	char *ptr;
+
+	ptr = _strchr(s, '=');
+	if (!ptr)
+		return (1);
+	if (!*++ptr)
+		return (unset_alias(data, s));
+
+	unset_alias(data, s);
+	return (add_node_end(&(data->alias), s, 0) == NULL);
+}
+
+/**
+ * unset_alias - function to set alias
+ * @data: input
+ * @s: input
+ *
+ * Return: int
+ */
+
+int unset_alias(data_t *data, char *s)
+{
+	char *ptr, c;
+	int ret;
+
+	ptr = _strchr(s, '=');
+	if (!ptr)
+		return (1);
+	c = *ptr;
+	*ptr = 0;
+	ret = delete_node_at_index(&(data->alias),
+		get_node_index(data->alias, node_starts_with(data->alias, s, -1)));
+	*ptr = c;
+	return (ret);
 }

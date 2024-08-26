@@ -31,7 +31,7 @@
 
 extern char **environ;
 
-#define INFO_INIT \
+#define DATA_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
 
@@ -46,7 +46,7 @@ typedef struct liststrings
 {
 	int num;
 	char *str;
-	struct liststr *next;
+	struct liststrings *next;
 } list_t;
  
 /**
@@ -185,6 +185,9 @@ size_t print_list_str(const list_t *h);
 int replace_alias(data_t *data);
 int read_history(data_t *data);
 int renumber_history(data_t *data);
-
+void clear_data(data_t *data);
+int set_alias(data_t *data, char *s);
+int print_alias(list_t *n);
+int unset_alias(data_t *data, char *s);
 
 #endif

@@ -101,7 +101,7 @@ ssize_t input_buf(data_t *data, char **buffer, size_t *length)
 			remove_comments(*buffer);
 			build_history_list(data, *buffer, data->histcount++);
 			{
-				*legthn = r;
+				*length = r;
 				data->cmd_buf = buffer;
 			}
 		}

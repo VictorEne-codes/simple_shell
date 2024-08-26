@@ -12,7 +12,7 @@ int _mycd(data_t *data)
 	char *p, *d, buf[1024];
 	int chdir_ret;
 
-	p = getcwd(buffer, 1024);
+	p = getcwd(buf, 1024);
 	if (!p)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!data->argv[1])
@@ -71,31 +71,6 @@ void _puts(char *str)
 		_putchar(str[i]);
 		i++;
 	}
-}
-
-/**
- * _getenv - returns the value on an environment
- * @data: input
- * @n: input
- *
- * Return: char
- */
-
-char *_getenv(data_t *data, const char *n)
-{
-	list_t *node = data->env;
-	char *ptr;
-
-	while (node)
-	{
-		ptr = starts_with(node->str, n);
-		if (ptr && *ptr)
-		{
-			return (ptr);
-		}
-		node = node->next;
-	}
-	return (NULL);
 }
 
 /**

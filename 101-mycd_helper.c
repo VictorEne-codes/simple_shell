@@ -1,25 +1,6 @@
 #include "main.h"
 
 /**
- * print_error - outputs an error message
- * @data: input
- * @estr: input
- *
- * Return: void
- */
-
-void print_error(data_t *data, char *estr)
-{
-	_eputs(data->fname);
-	_eputs(": ");
-	print_d(data->line_count, STDERR_FILENO);
-	_eputs(": ");
-	_eputs(data->argv[0]);
-	_eputs(": ");
-	_eputs(estr);
-}
-
-/**
  * _eputs - prints out a string
  * @s: input
  *

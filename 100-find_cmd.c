@@ -63,50 +63,6 @@ int is_delim(char c, char *delim)
 }
 
 /**
-* find_path - entry point finds the given command in the PATH string
-* @data: input
-* @pathstr: input
-* @cmd: input
-*
-* Return: char
-*/
-
-char *find_path(data_t *data, char *pathstr, char *cmd)
-{
-	int i = 0, cur_pos = 0;
-	char *path;
-
-	if (!pathstr)
-		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
-	{
-		if (is_cmd(data, cmd))
-			return (cmd);
-	}
-	while (1)
-	{
-		if (!pathstr[i] || pathstr[i] == ':')
-		{
-			path = dup_chars(pathstr, cur_pos, i);
-			if (!*path)
-				_strcat(path, cmd);
-			else
-			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
-			}
-			if (is_cmd(data, path))
-				return (path);
-			if (!pathstr[i])
-				break;
-			cur_pos = i;
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-/**
 * _getenv - entry point gets the value of an environ variable
 * @data: input
 * @name: input
