@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-*list_len - entry point determines the length of a linked list
-*@h: pointer to the first n
+* list_len - entry point determines the length of a linked list
+* @h: input
 *
-*Return: size of the list(i).
+* Return: size_t
 */
 size_t list_len(const list_t *h)
 {
@@ -19,10 +19,10 @@ size_t list_len(const list_t *h)
 }
 
 /**
-*bfree - entry point frees a pointer and NULLs its address
-*@p: address of the pointer to free
+* bfree - entry point frees a pointer and NULLs its address
+* @p: input
 *
-*Return: 1 if freed, or 0 if not.
+* Return: int
 */
 int bfree(void **p)
 {
@@ -36,10 +36,10 @@ int bfree(void **p)
 }
 
 /**
-*list_to_strings - entry point returns an array of strings of the list->str
-*@h: pointer to the first n
+* list_to_strings - entry point returns an array of strings of the list->str
+* @h: input
 *
-*Return: array of strings(s).
+* Return: char
 */
 char **list_to_strings(list_t *h)
 {
@@ -72,11 +72,12 @@ char **list_to_strings(list_t *h)
 }
 
 /**
-*free_list - entry point frees all ns of a list
-*@hp: is the address of the pointer to head n
+* free_list - entry point frees all ns of a list
+* @hp: input
 *
-*Return: void
+* Return: void
 */
+
 void free_list(list_t **hp)
 {
 	list_t *n, *next_n, *h;
@@ -96,11 +97,12 @@ void free_list(list_t **hp)
 }
 
 /**
-*print_list - entry ppoint prints all elements of a list_t linked list
-*@h: pointer to the first n
+* print_list - entry ppoint prints all elements of a list_t linked list
+* @h: input
 *
-*Return: size of the list(i).
+* Return: size_t
 */
+
 size_t print_list(const list_t *h)
 {
 	size_t i = 0;
