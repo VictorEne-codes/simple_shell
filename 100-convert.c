@@ -94,7 +94,7 @@ char *convert_number(long int num, int b, int f)
 	*ptr = '\0';
 
 	do {
-		*--ptr = array[n % b];
+		*--ptr = arr[n % b];
 		n /= b;
 	} while (n != 0);
 

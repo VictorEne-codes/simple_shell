@@ -15,6 +15,26 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
+#define CMD_NORM	0
+#define CMD_OR		1
+#define CMD_AND		2
+#define CMD_CHAIN	3
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
+#define USE_GETLINE 0
+#define USE_STRTOK 0
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
+
+extern char **environ;
+
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+		0, 0, 0}
+
 /**
  * struct liststrings - linked lists
  * @num: input
@@ -153,6 +173,18 @@ char *_strcpy(char *dest, char *src);
 int build_history_list(data_t *data, char *buf, int linecount);
 int write_history(data_t *data);
 char *get_history_file(data_t *data);
+size_t print_list(const list_t *h);
+void free_list(list_t **hp);
+char **list_to_strings(list_t *h);
+int bfree(void **p);
+size_t list_len(const list_t *h);
+int replace_vars(data_t *data);
+int _isalpha(int c);
+int replace_string(char **old_str, char *new_str);
+size_t print_list_str(const list_t *h);
+int replace_alias(data_t *data);
+int read_history(data_t *data);
+int renumber_history(data_t *data);
 
 
 #endif
