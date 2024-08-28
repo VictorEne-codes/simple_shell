@@ -48,7 +48,7 @@ typedef struct liststrings
 	char *str;
 	struct liststrings *next;
 } list_t;
- 
+
 /**
  * struct getsdata - arguments to pass into funtions
  * @arg: input
@@ -101,8 +101,8 @@ typedef struct getsdata
 
 typedef struct builtin
 {
-        char *type;
-        int (*func)(data_t *);
+	char *type;
+	int (*func)(data_t *);
 } builtin_table;
 
 int _getline(data_t *data, char **p, size_t *len);
@@ -153,7 +153,8 @@ ssize_t get_input(data_t *data);
 int is_chain(data_t *data, char *buffer, size_t *ptr);
 char **strtow2(char *str, char p);
 char **strtow(char *str, char *p);
-void check_chain(data_t *data, char *buffer, size_t *ptr, size_t i, size_t length);
+void check_chain(data_t *data, char *buffer,
+		size_t *ptr, size_t i, size_t length);
 ssize_t input_buf(data_t *data, char **buffer, size_t *length);
 char *_memset(char *s, char b, unsigned int n);
 list_t *add_node(list_t **head, const char *s, int n);
